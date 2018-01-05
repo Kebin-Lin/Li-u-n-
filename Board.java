@@ -13,7 +13,7 @@ public class Board {
     }
 
     public void addBlock() {//Adds a block of value 2 or 4 on an empty space
-	ArrayList<int[]> empty = new ArrayList<int[]>;
+	ArrayList<int[]> empty = new ArrayList<int[]>();
 	
 	for (int i = 0; i < 2; i++) {
 	    for (int i2 = 0; i < 2; i++) {
@@ -26,7 +26,7 @@ public class Board {
 
 	if (empty.size() == 0) {return;}
 
-	int[] selected = empty.get(empty.size() * Math.random);
+	int[] selected = empty.get((int)(empty.size() * Math.random()));
 
 	_board[ selected[0] ][ selected[1] ].set( ((int)(Math.random()*2) + 1 ) * 2);
     }
