@@ -15,10 +15,9 @@ public class Block{
     return _num;
   }
   public String toString(){
+    if (_num == 0) {return "    ";}
     String retStr=""+_num;
-    for(int i=0; i<4-retStr.length();i++){
-      retStr=" "+retStr;
-    }
+    while (retStr.length() < 4) {retStr = " " + retStr;}
     return retStr;
   }
 }

@@ -223,33 +223,36 @@ public class Board {
     public String gameStatus() {
 	if (_maxNum >= 2048) {return "Win";}
 	if (_num0s > 0) {return "Ongoing";}
+	return "Loss";
     }
-    public void string(){
-	String foo = "";
+    public int getMax() { return _maxNum; }
+    public String toString(){
+	String foo = "----------------------\n";
 	for( int i =0; i < 4; i++ ) {
 	    foo += "| ";
 	    for( int j=0; j < 4; j++ ) {
-		foo +=_board[i][j].get() + " "; //get(i+1,j+1)
+		foo +=_board[i][j] + "|"; //get(i+1,j+1)
 	    }
-	    foo += "|\n";
+	    foo += "\n----------------------\n";
 	}
 	
-	System.out.println(foo);
+	return foo;
     }
     public static void main(String[] args) {
 	Board b=new Board();
 	b.addBlock();
 	b.addBlock();
-	b.string();
+        System.out.println(b);
 	for(int i=0;i<6;i++){
 	    b.slideUp();
-	    b.string();
+	    System.out.println(b);
 	    b.slideLeft();
-	    b.string();
+	    System.out.println(b);
 	    b.slideDown();
-	    b.string();
+	    System.out.println(b);
 	    b.slideRight();
-	    b.string();
+	    System.out.println(b);
 	}
+	System.out.println(b.getMax());
     }
 }

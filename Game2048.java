@@ -1,15 +1,11 @@
 import cs1.Keyboard;
 public class Game2048{
-    public Board b;
-    public static void newGame(){
-	for (int x = 0; x < 4; x++){
-	    for (int y = 0; y < 4; y++){
-		b[x][y] = "    ";
-	    }
-	}
-    }
+
     public static void main(String [] args){
-	newGame();
+	Board b = new Board();
+	b.addBlock();
+	b.addBlock();
+	
 	while (b.gameStatus().equals("Ongoing")){
 	    b.addBlock();
 	    System.out.println(b);
@@ -25,4 +21,5 @@ public class Game2048{
 		b.slideRight();
 	}
     }
+    
 }
