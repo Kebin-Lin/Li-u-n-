@@ -4,9 +4,7 @@ public class Game2048{
 	Board b = new Board();
 	b.addBlock();
 	b.addBlock();
-	
 	while (b.gameStatus().equals("Ongoing")){
-	    b.addBlock();
 	    System.out.println(b);
 	    System.out.println("Pick a direction: Up, Down, Left, or Right.");
 	    String input = Keyboard.readString();
@@ -18,6 +16,10 @@ public class Game2048{
 		b.slideLeft();
 	    else if (input.equals("r") || input.equals("R"))
 		b.slideRight();
+	    else{
+		System.out.println("Invalid move. Please try again.");
+		input = Keyboard.readString();
+	    }
 	}
     }
 }
