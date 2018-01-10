@@ -52,4 +52,10 @@ public class Board {
       }
     }
   }
+
+  public String gameStatus() {
+    if (_maxNum >= 2048) {return "Win";}
+    if (_num0s > 0) {return "Ongoing";}
+    
+  }
 }
