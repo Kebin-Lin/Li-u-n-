@@ -5,6 +5,7 @@ public class Game2048{
 	b.addBlock();
 	b.addBlock();
 	while (b.gameStatus().equals("Ongoing")){
+	    System.out.println("Score: " + b.getScore());
 	    System.out.println(b);
 	    System.out.println("Pick a direction: Up, Left, Down, or Right.");
 	    System.out.println("Type in w, a, s, or d for each direction, respectively.");

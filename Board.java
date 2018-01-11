@@ -1,11 +1,13 @@
 public class Board {
     public int _maxNum;
     public int _num0s;
+    public int _score;
     public Block[][] _board;
 
     public Board() {
 	_maxNum = 0;
 	_num0s = 16;
+	_score = 0;
 	_board = new Block[4][4];
 	for (int i = 0; i < 4; i++) {
 	    for (int i2 = 0; i2 < 4; i2++) {
@@ -73,6 +75,7 @@ public class Board {
 		if(_board[r][i].get()>_maxNum){
 		    _maxNum=_board[r][i].get();
 		}
+		_score+=_board[r][i].get();
 		_board[r][i+1].set(0);
 		_num0s++;
 		slideLeftRow(r);
@@ -115,6 +118,7 @@ public class Board {
 		if(_board[r][i].get()>_maxNum){
 		    _maxNum=_board[r][i].get();
 		}
+		_score+=_board[r][i].get();
 		_board[r][i-1].set(0);
 		_num0s++;
 		slideRightRow(r);
@@ -157,6 +161,7 @@ public class Board {
 		if(_board[i][c].get()>_maxNum){
 		    _maxNum=_board[i][c].get();
 		}
+		_score+=_board[i][c].get();
 		_board[i+1][c].set(0);
 		_num0s++;
 		slideUpCol(c);
@@ -199,6 +204,7 @@ public class Board {
 		if(_board[i][c].get()>_maxNum){
 		    _maxNum=_board[i][c].get();
 		}
+		_score+=_board[i][c].get();
 		_board[i-1][c].set(0);
 		_num0s++;
 		slideDownCol(c);
@@ -348,7 +354,7 @@ public class Board {
 	if (slideRightTest()+slideLeftTest()+slideUpTest()+slideDownTest()>0) {return "Ongoing";}
 	return "Loss";
     }
-    public int getMax() { return _maxNum; }
+    public int getScore() { return _score; }
     public String toString(){
 	String foo = "----------------------\n";
 	for( int i =0; i < 4; i++ ) {
@@ -360,22 +366,5 @@ public class Board {
 	}
 	
 	return foo;
-    }
-    public static void main(String[] args) {
-	Board b=new Board();
-	b.addBlock();
-	b.addBlock();
-        System.out.println(b);
-	for(int i=0;i<6;i++){
-	    b.slideUp();
-	    System.out.println(b);
-	    b.slideLeft();
-	    System.out.println(b);
-	    b.slideDown();
-	    System.out.println(b);
-	    b.slideRight();
-	    System.out.println(b);
-	}
-	System.out.println(b.getMax());
     }
 }
