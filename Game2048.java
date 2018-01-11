@@ -4,11 +4,16 @@ public class Game2048{
 	Board b = new Board();
 	b.addBlock();
 	b.addBlock();
+	boolean badInput = false;
 	while (b.gameStatus().equals("Ongoing")){
+	    for (int i = 0; i < 64; i++) { System.out.println(); }
 	    System.out.println("Score: " + b.getScore());
 	    System.out.println(b);
 	    System.out.println("Pick a direction: Up, Left, Down, or Right.");
 	    System.out.println("Type in w, a, s, or d for each direction, respectively.");
+	    if (badInput) {System.out.println("Invalid move. Please try again.");}
+	    else {System.out.println();}
+	    badInput = false;
 	    String input = Keyboard.readString().toLowerCase();
 	    if (input.equals("w"))
 		b.slideUp();
@@ -19,7 +24,7 @@ public class Game2048{
 	    else if (input.equals("d"))
 		b.slideRight();
 	    else{
-		System.out.println("Invalid move. Please try again.");
+		badInput = true;
 	    }
 	}
 	if (b.gameStatus().equals("Loss")){
