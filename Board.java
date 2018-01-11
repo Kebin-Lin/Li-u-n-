@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Board {
     public int _maxNum;
     public int _num0s;
@@ -15,6 +13,7 @@ public class Board {
 	    }
 	}
     }
+    
     /*
       public void addBlock() {//Adds a block of value 2 or 4 on an empty space
       ArrayList<int[]> empty = new ArrayList<int[]>(); //ArrayList for empty spots
@@ -183,9 +182,9 @@ public class Board {
 	    for(int i=3;i>0;i--){
 		if (_board[i][c].isEmpty()){
 		    if(!_board[i-1][c].isEmpty()){
-		    _board[i][c].set(_board[i-1][c].get());
-		    _board[i-1][c].set(0);
-		    moves++;
+			_board[i][c].set(_board[i-1][c].get());
+			_board[i-1][c].set(0);
+			moves++;
 		    }
 		}
 	    }
@@ -220,9 +219,133 @@ public class Board {
 	}
     }
 
+    public int slideLeftRowTest(int r){
+	int moves=0;
+	for(int p=1; p<4; p++){
+	    for(int i=0;i<3;i++){
+		if (_board[r][i].isEmpty()){
+		    if(!_board[r][i+1].isEmpty()){
+			moves++;
+		    }
+		}
+	    }
+	}
+	return moves;
+    }
+    public int mergeLeftTest(int r){
+	int merges=0;
+	for(int i=0;i<3;i++){
+	    if((_board[r][i].get()==_board[r][i+1].get())&&!_board[r][i].isEmpty()){
+      		merges++;
+	    }
+	}
+	return merges;
+    }
+    public int slideLeftTest(){
+	int moves=0;
+	int merges=0;
+	for(int i=0;i<4;i++){
+	    moves+=slideLeftRowTest(i);
+	    merges+=mergeLeftTest(i);
+	}
+	return moves+merges;
+    }
+    public int slideRightRowTest(int r){
+	int moves=0;
+	for(int p=1; p<4; p++){
+	    for(int i=3;i>0;i--){
+		if (_board[r][i].isEmpty()){
+		    if(!_board[r][i-1].isEmpty()){
+			moves++;
+		    }
+		}
+	    }
+	}
+	return moves;
+    }
+    public int mergeRightTest(int r){
+	int merges=0;
+	for(int i=3;i>0;i--){
+	    if((_board[r][i].get()==_board[r][i-1].get())&&!_board[r][i].isEmpty()){
+		merges++;
+	    }
+	}
+	return merges;
+    }
+    public int slideRightTest(){
+	int moves=0;
+	int merges=0;
+	for(int i=0;i<4;i++){
+	    moves+=slideRightRowTest(i);
+	    merges+=mergeRightTest(i);
+	}
+	return moves+merges;
+    }
+    public int slideUpColTest(int c){
+	int moves=0;
+	for(int p=1; p<4; p++){
+	    for(int i=0;i<3;i++){
+		if (_board[i][c].isEmpty()){
+		    if(!_board[i+1][c].isEmpty()){
+			moves++;
+		    }
+		}
+	    }
+	}
+	return moves;
+    }
+    public int mergeUpTest(int c){
+	int merges=0;
+	for(int i=0;i<3;i++){
+	    if((_board[i][c].get()==_board[i+1][c].get())&&!_board[i][c].isEmpty()){
+		merges++;
+	    }
+	}
+	return merges;
+    }
+    public int slideUpTest(){
+	int moves=0;
+	int merges=0;
+	for(int i=0;i<4;i++){
+	    moves+=slideUpColTest(i);
+	    merges+=mergeUpTest(i);
+	}
+        return moves+merges;
+    }
+    public int slideDownColTest(int c){
+	int moves=0;
+	for(int p=1; p<4; p++){
+	    for(int i=3;i>0;i--){
+		if (_board[i][c].isEmpty()){
+		    if(!_board[i-1][c].isEmpty()){
+			moves++;
+		    }
+		}
+	    }
+	}
+	return moves;
+    }
+    public int mergeDownTest(int c){
+	int merges=0;
+	for(int i=3;i>0;i--){
+	    if((_board[i][c].get()==_board[i-1][c].get())&&!_board[i][c].isEmpty()){
+		merges++;
+	    }
+	}
+	return merges;
+    }
+    public int slideDownTest(){
+	int moves=0;
+	int merges=0;
+	for(int i=0;i<4;i++){
+	    moves+=slideDownColTest(i);
+	    merges+=mergeDownTest(i);
+	}
+	return moves+merges;
+    }
     public String gameStatus() {
 	if (_maxNum >= 2048) {return "Win";}
-	if (_num0s > 0) {return "Ongoing";}
+	if (slideRightTest()+slideLeftTest()+slideUpTest()+slideDownTest()>0) {return "Ongoing";}
 	return "Loss";
     }
     public int getMax() { return _maxNum; }
