@@ -21,5 +21,13 @@ public class Game2048{
 		input = Keyboard.readString();
 	    }
 	}
+	if (b.gameStatus().equals("Loss")){
+	    System.out.println(b);
+	    System.out.println("Sorry, you lost.");
+	}
+	else{
+	    System.out.println(b);
+	    System.out.println("Congrats! You won!");
+	}
     }
 }
