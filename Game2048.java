@@ -6,19 +6,19 @@ public class Game2048{
 	b.addBlock();
 	while (b.gameStatus().equals("Ongoing")){
 	    System.out.println(b);
-	    System.out.println("Pick a direction: Up, Down, Left, or Right.");
-	    String input = Keyboard.readString();
-	    if (input.equals("u") || input.equals("U"))
+	    System.out.println("Pick a direction: Up, Left, Down, or Right.");
+	    System.out.println("Type in w, a, s, or d for each direction, respectively.");
+	    String input = Keyboard.readString().toLowerCase();
+	    if (input.equals("w"))
 		b.slideUp();
-	    else if (input.equals("d") || input.equals("D"))
+	    else if (input.equals("s"))
 		b.slideDown();
-	    else if (input.equals("l") || input.equals("L"))
+	    else if (input.equals("a"))
 		b.slideLeft();
-	    else if (input.equals("r") || input.equals("R"))
+	    else if (input.equals("d"))
 		b.slideRight();
 	    else{
 		System.out.println("Invalid move. Please try again.");
-		input = Keyboard.readString();
 	    }
 	}
 	if (b.gameStatus().equals("Loss")){

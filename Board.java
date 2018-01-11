@@ -49,7 +49,7 @@ public class Board {
 	    }
 	}
     }
-
+    
     public int slideLeftRow(int r){
 	int moves=0;
 	for(int p=1; p<4; p++){
