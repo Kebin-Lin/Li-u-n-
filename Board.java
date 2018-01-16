@@ -16,34 +16,16 @@ public class Board {
 	}
     }
     
-    /*
-      public void addBlock() {//Adds a block of value 2 or 4 on an empty space
-      ArrayList<int[]> empty = new ArrayList<int[]>(); //ArrayList for empty spots
-      for (int i = 0; i < 2; i++) {//Look through the _board for empty spots
-      for (int i2 = 0; i < 2; i++) {
-      if (_board[i][i2].isEmpty()) {//Add empty spot into the ArrayList
-      int[] adding = new int[2];
-      adding[0] = i;
-      adding[1] = i2;
-      empty.add(adding);
-      }
-      }
-      }
-      if (empty.size() == 0) {return;}//D
-      int[] selected = empty.get((int)(empty.size() * Math.random()));
-      _board[ selected[0] ][ selected[1] ].set( ((int)(Math.random()*2) + 1 ) * 2);
-      } */
-
     public void addBlock() {
-	int pos = (int)(Math.random() * _num0s);
-	int index = 0;
-	if (_num0s == 0) {return;}
+	int pos = (int)(Math.random() * _num0s); //Selects a position from empty blocks
+	int index = 0; //Current index
+	if (_num0s == 0) {return;} //Does nothing if there are no empty spaces
 	for (int r = 0; r < 4; r++) {
 	    for (int c = 0; c < 4; c++) {
 		if(_board[r][c].isEmpty()){
-		    if (index == pos) {
+		    if (index == pos) { //If the index matches the position, set the block value to 2 or 4
 			_board[r][c].set(((int)(Math.random()*2)+1)*2);
-			_num0s--;
+			_num0s--; //Decreases number of empty spaces by one
 			return;
 		    }
 		    index++;
@@ -57,7 +39,7 @@ public class Board {
 	for(int p=1; p<4; p++){
 	    for(int i=0;i<3;i++){
 		if (_board[r][i].isEmpty()){
-		    if(!_board[r][i+1].isEmpty()){
+		    if(!_board[r][i+1].isEmpty()){ //Does nothing for two empty blocks
 			_board[r][i].set(_board[r][i+1].get());
 			_board[r][i+1].set(0);
 			moves++;
@@ -65,24 +47,24 @@ public class Board {
 		}
 	    }
 	}
-	return moves;
+	return moves; //Keeps track of actions
     }
     public int mergeLeft(int r){
 	int merges=0;
 	for(int i=0;i<3;i++){
-	    if((_board[r][i].get()==_board[r][i+1].get())&&!_board[r][i].isEmpty()){
-		_board[r][i].set(_board[r][i].get()*2);
+	    if((_board[r][i].get()==_board[r][i+1].get())&&!_board[r][i].isEmpty()){ //Ignores zeroes
+		_board[r][i].set(_board[r][i].get()*2); //Double value of block
 		if(_board[r][i].get()>_maxNum){
-		    _maxNum=_board[r][i].get();
+		    _maxNum=_board[r][i].get(); //Set _maxNum if this block value is the greatest
 		}
-		_score+=_board[r][i].get();
-		_board[r][i+1].set(0);
+		_score+=_board[r][i].get(); //Add to score
+		_board[r][i+1].set(0); //Delete previous block
 		_num0s++;
-		slideLeftRow(r);
+		slideLeftRow(r); //Slides again to make up for open blocks due to merge
 		merges++;
 	    }
 	}
-	return merges;
+	return merges; //Keeps track of merges
     }
     public void slideLeft(){
 	int moves=0;
@@ -91,7 +73,7 @@ public class Board {
 	    moves+=slideLeftRow(i);
 	    merges+=mergeLeft(i);
 	}
-	if(moves+merges>0){
+	if(moves+merges>0){ //Only if an action is made
 	    addBlock();
 	}
     }
@@ -225,7 +207,7 @@ public class Board {
 	}
     }
 
-    public int slideLeftRowTest(int r){
+    public int slideLeftRowTest(int r){ //Tests to see if an action would be made for gameStatus()
 	int moves=0;
 	for(int p=1; p<4; p++){
 	    for(int i=0;i<3;i++){
@@ -238,7 +220,7 @@ public class Board {
 	}
 	return moves;
     }
-    public int mergeLeftTest(int r){
+    public int mergeLeftTest(int r){ //Tests to see if an action would be made for gameStatus()
 	int merges=0;
 	for(int i=0;i<3;i++){
 	    if((_board[r][i].get()==_board[r][i+1].get())&&!_board[r][i].isEmpty()){
@@ -350,8 +332,8 @@ public class Board {
 	return moves+merges;
     }
     public String gameStatus() {
-	if (_maxNum >= 2048) {return "Win";}
-	if (slideRightTest()+slideLeftTest()+slideUpTest()+slideDownTest()>0) {return "Ongoing";}
+	if (_maxNum >= 2048) {return "Win";} //You win if you have a block with a value of 2048 or higher
+	if (slideRightTest()+slideLeftTest()+slideUpTest()+slideDownTest()>0) {return "Ongoing";} //If an action is possible in any direction, the game is ongoing
 	return "Loss";
     }
     public int getScore() { return _score; }
