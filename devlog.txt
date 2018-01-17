@@ -18,18 +18,14 @@ OBSTACLES OVERCOME
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
->
 
-COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<wow! oo! etc!...>
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Removal of newGame() because it was useless
+- New helper functions for gameStatus()
+- Changed controls to be easier to use
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -108,4 +104,9 @@ John Liu :: Added helper methods for gameStatus() and updated gameStatus()
 --------------------------------------------------------------
 Kevin Lin :: Changed spacing of outputs to look nicer, added a score system, added getScore()
 John Liu :: Changed input keys to be more easy to use
+==============================================================
+
+2018-1-16
+--------------------------------------------------------------
+Group :: Added comments for code
 ==============================================================
