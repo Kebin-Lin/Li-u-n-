@@ -1,8 +1,8 @@
 public class Board {
-    public int _maxNum;
-    public int _num0s;
-    public int _score;
-    public Block[][] _board;
+    private int _maxNum;
+    private int _num0s;
+    private int _score;
+    private Block[][] _board;
 
     public Board() {
 	_maxNum = 0;
@@ -15,7 +15,7 @@ public class Board {
 	    }
 	}
     }
-    
+
     public void addBlock() {
 	int pos = (int)(Math.random() * _num0s); //Selects a position from empty blocks
 	int index = 0; //Current index
@@ -33,7 +33,7 @@ public class Board {
 	    }
 	}
     }
-    
+
     public int slideLeftRow(int r){
 	int moves=0;
 	for(int p=1; p<4; p++){
@@ -346,7 +346,7 @@ public class Board {
 	    }
 	    foo += "\n----------------------\n";
 	}
-	
+
 	return foo;
     }
 }
